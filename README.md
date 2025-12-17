@@ -14,7 +14,7 @@ Este repositorio representa un proyecto **real y funcional**, no un ejemplo bás
 
 * **C#**
 * **ASP.NET Core MVC**
-* **.NET 9
+* **.NET 9.0**
 * **Entity Framework Core**
 * **SQL Server**
 * **HTML / Razor Views**
