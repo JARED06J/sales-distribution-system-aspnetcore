@@ -83,7 +83,7 @@ git clone https://github.com/tu-usuario/tu-repositorio.git
 
 ## 👨‍💻 Autor
 
-Desarrollado por **[Jared Garbanzo]**
+Desarrollado por **Jared Garbanzo**
 Perfil orientado a **Backend / Software Developer (.NET)**
 
 ---
