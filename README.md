@@ -42,7 +42,7 @@ Esta estructura facilita el mantenimiento, escalabilidad y pruebas del sistema.
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/JARED06J/sales-distribution-system-aspnetcore.git
 ```
 
 2. Abrir el proyecto en **Visual Studio 2022**.
