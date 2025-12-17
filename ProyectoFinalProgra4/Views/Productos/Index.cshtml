@@ -1,0 +1,64 @@
+﻿@model List<ProductoViewModel>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Productos.css" asp-append-version="true" />
+}
+
+<h2>Productos</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form method="get">
+    <input type="text" name="filtro" placeholder="Filtrar por nombre" value="@ViewData["Filtro"]" />
+    <button type="submit">Filtrar</button>
+    <a asp-action="Nuevo">Nuevo</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4">No se encontraron productos con ese criterio.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var productos in Model)
+            {
+                <tr>
+                    <td>@productos.NumeroProducto</td>
+                    <td>@productos.NombreProducto</td>
+                    <td>@productos.Precio</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@productos.NumeroProducto">Editar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

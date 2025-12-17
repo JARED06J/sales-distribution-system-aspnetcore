@@ -1,0 +1,43 @@
+﻿@model ProveedorViewModel
+
+<h2>Nuevo Proveedor</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/nuevo.css" asp-append-version="true" />
+}
+<form asp-action="Nuevo" method="post">
+    <div>
+        <label>Cédula Jurídica</label>
+        <input asp-for="cedulaJuridica" class="form-control" />
+        <span asp-validation-for="cedulaJuridica" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Nombre Empresa</label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Nombre Contacto</label>
+        <input asp-for="nombreContacto" class="form-control" />
+        <span asp-validation-for="nombreContacto" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Teléfono</label>
+        <input asp-for="telefono" class="form-control" />
+        <span asp-validation-for="telefono" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Correo Electrónico</label>
+        <input asp-for="correo" class="form-control" />
+        <span asp-validation-for="correo" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="estado" value="true" />
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+

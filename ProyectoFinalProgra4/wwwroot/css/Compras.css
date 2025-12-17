@@ -1,0 +1,45 @@
+﻿.container {
+    max-width: 900px;
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+}
+
+#filtro {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.table {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+    .table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.2s;
+        cursor: pointer;
+    }
+
+        .table tbody tr:hover {
+            background-color: #eef4ff;
+        }
+
+    .table td, .table th {
+        padding: 12px;
+        vertical-align: middle;
+    }

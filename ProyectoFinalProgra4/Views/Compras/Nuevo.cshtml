@@ -1,0 +1,108 @@
+﻿@model NuevaCompraViewModel
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="container mt-3">
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    @section Styles {
+        <link rel="stylesheet" href="~/css/nuevo.css" asp-append-version="true" />
+    }
+
+    <h2>Registrar Nueva Compra</h2>
+
+    <form asp-action="Nuevo" method="post">
+        <div class="mb-3">
+            <label>Número de Ingreso</label>
+            <input asp-for="NumeroIngreso" class="form-control" />
+            <span asp-validation-for="NumeroIngreso" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Cédula Jurídica</label>
+            <input asp-for="CedulaJuridica" class="form-control" />
+            <span asp-validation-for="CedulaJuridica" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Nombre de la Empresa</label>
+            <input asp-for="NombreEmpresa" class="form-control" />
+            <span asp-validation-for="NombreEmpresa" class="text-danger"></span>
+        </div>
+
+        <h4>Productos</h4>
+        <table class="table" id="tablaProductos">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model?.Productos != null && Model.Productos.Count > 0)
+                {
+                    @for (int i = 0; i < Model.Productos.Count; i++)
+                    {
+                        <tr>
+                            <td><input asp-for="Productos[@i].Codigo" class="form-control" /></td>
+                            <td><input asp-for="Productos[@i].Nombre" class="form-control" /></td>
+                            <td><input asp-for="Productos[@i].Cantidad" class="form-control" type="number" /></td>
+                            <td><button type="button" class="btn btn-danger" onclick="eliminarFila(this)">X</button></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary mb-3" onclick="agregarFila()">Agregar Producto</button>
+
+        <button type="submit" class="btn btn-primary">Guardar Compra</button>
+        <a class="btn btn-secondary" href="/Compras/Index">Cancelar</a>
+    </form>
+</div>
+
+<script>
+    function agregarFila() {
+        var tabla = document.getElementById("tablaProductos").getElementsByTagName('tbody')[0];
+        var fila = tabla.insertRow();
+        var index = tabla.rows.length - 1; 
+
+        fila.innerHTML = `
+            <td><input name="Productos[${index}].Codigo" class="form-control" /></td>
+            <td><input name="Productos[${index}].Nombre" class="form-control" /></td>
+            <td><input name="Productos[${index}].Cantidad" type="number" class="form-control" /></td>
+            <td><button type="button" class="btn btn-danger" onclick="eliminarFila(this)">X</button></td>
+        `;
+    }
+
+    function eliminarFila(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        reindexarProductos();
+    }
+
+    function reindexarProductos() {
+        var filas = document.querySelectorAll("#tablaProductos tbody tr");
+        filas.forEach((fila, i) => {
+            var inputs = fila.querySelectorAll("input");
+            inputs.forEach(input => {
+                if (input.name.includes("Codigo"))
+                    input.name = `Productos[${i}].Codigo`;
+                if (input.name.includes("Nombre"))
+                    input.name = `Productos[${i}].Nombre`;
+                if (input.name.includes("Cantidad"))
+                    input.name = `Productos[${i}].Cantidad`;
+            });
+        });
+    }
+</script>

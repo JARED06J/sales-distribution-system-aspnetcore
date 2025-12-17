@@ -1,0 +1,52 @@
+﻿@model List<ProveedorViewModel>
+
+<h2>Proveedores</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-info">@TempData["Mensaje"]</div>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Productos.css" asp-append-version="true" />
+}
+
+<form method="get" asp-action="Index">
+    <input type="text" name="filtro" value="@ViewData["Filtro"]" placeholder="Buscar..." />
+    <button type="submit">Filtrar</button>
+</form>
+
+<a asp-action="Nuevo" class="btn btn-primary">Nuevo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cédula Jurídica</th>
+            <th>Nombre Empresa</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.cedulaJuridica</td>
+                <td>@p.nombre</td>
+                <td>@p.nombreContacto</td>
+                <td>@p.telefono</td>
+                <td>@p.estado</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Editar" asp-route-id="@p.cedulaJuridica">Editar</a>
+                    <a class="btn btn-sm btn-danger"
+                       onclick="return confirm('¿Está seguro de inactivar el proveedor?');"
+                       asp-action="Inactivar" asp-route-cedulaJuridica="@p.cedulaJuridica">Inactivar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

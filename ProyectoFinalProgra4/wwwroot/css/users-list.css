@@ -1,0 +1,90 @@
+﻿.users-container {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+    .users-container h2 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .users-container form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .users-container input[type="text"] {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 250px;
+    }
+
+    .users-container button {
+        padding: 8px 16px;
+        border: none;
+        background: #0d6efd;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+        .users-container button:hover {
+            background: #0b5ed7;
+        }
+
+    .users-container a {
+        padding: 8px 16px;
+        background: #198754;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+        .users-container a:hover {
+            background: #157347;
+        }
+
+    .users-container table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .users-container th {
+        background: #f1f1f1;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .users-container td {
+        border-top: 1px solid #e0e0e0;
+        padding: 10px;
+    }
+
+.inactivar-btn {
+    background: #dc3545;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .inactivar-btn:hover {
+        background: #bb2d3b;
+    }
+
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e7f1ff;
+    border-left: 4px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: 6px;
+}

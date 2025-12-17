@@ -1,0 +1,48 @@
+﻿@model List<UltimasComprasViewModel>
+
+<div class="container mt-3">
+    <h2>Compras</h2>
+    <a class="btn btn-primary mb-3" asp-action="Nuevo">Nuevo</a>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    @section Styles {
+        <link rel="stylesheet" href="~/css/Productos.css" asp-append-version="true" />
+    }
+
+    <form asp-action="Index" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="filtro" value="@Context.Request.Query["filtro"]"
+                   class="form-control" placeholder="Filtrar..." />
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-bordered" id="tablaCompras">
+        <thead>
+            <tr>
+                <th>Numero Ingreso</th>
+                <th>Fecha Compra</th>
+                <th>Cedula Juridica</th>
+                <th>Nombre Empresa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a asp-action="Detalle" asp-route-numeroIngreso="@item.numeroIngreso">@item.numeroIngreso</a></td>
+                    <td>@item.fechaCompra</td>
+                    <td>@item.cedulaJuridica</td>
+                    <td>@item.nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

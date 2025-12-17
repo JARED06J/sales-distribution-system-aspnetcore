@@ -1,0 +1,43 @@
+﻿@model CreateUserViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/create-user.css" asp-append-version="true" />
+}
+<div class="form-container">
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    }
+
+
+    <h2>Nuevo Usuario</h2>
+
+    <form asp-action="Create" method="post">
+        <input asp-for="Nombre" placeholder="Nombre" /><br />
+        <input asp-for="PrimerApellido" placeholder="Primer Apellido" /><br />
+        <input asp-for="SegundoApellido" placeholder="Segundo Apellido" /><br />
+        <input asp-for="Correo" placeholder="Correo" /><br />
+        <input asp-for="Usuario" placeholder="Nombre de Usuario" /><br />
+        <select asp-for="TipoUsuario">
+            <option value="1">Administrador</option>
+            <option value="2">Cliente</option>
+        </select>
+        <button type="submit">Aceptar</button>
+    </form>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    }
+</div>
+

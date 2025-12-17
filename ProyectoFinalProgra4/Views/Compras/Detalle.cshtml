@@ -1,0 +1,28 @@
+﻿@model DetalleCompras
+@section Styles {
+    <link rel="stylesheet" href="~/css/detalle.css" asp-append-version="true" />
+}
+<h2>Detalle de la Compra @Model.numeroIngreso</h2>
+<p><strong>Fecha:</strong> @Model.fechaCompra</p>
+<p><strong>Cédula Jurídica:</strong> @Model.cedulaJuridica</p>
+<p><strong>Proveedor:</strong> @Model.nombreProveedor</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>No Producto</th>
+            <th>Nombre Producto</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in Model.Productos)
+        {
+            <tr>
+                <td>@producto.noProducto</td>
+                <td>@producto.nombre</td>
+                <td>@producto.cantidad</td>
+            </tr>
+        }
+    </tbody>
+</table>

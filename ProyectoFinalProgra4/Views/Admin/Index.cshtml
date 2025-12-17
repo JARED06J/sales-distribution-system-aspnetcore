@@ -1,0 +1,60 @@
+﻿@model List<UserViewModel>
+@section Styles {
+    <link rel="stylesheet" href="~/css/users-list.css" asp-append-version="true" />
+}
+<div class="users-container">
+    <h2>Usuarios</h2>
+    <form method="get">
+        <input type="text" name="filtro"
+               value="@(Context.Request.Query["filtro"])"
+               placeholder="Filtrar por nombre, apellidos o correo" />
+        <button type="submit">Filtrar</button>
+        <a asp-action="Create">Nuevo</a>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Correo</th>
+                <th>Estado</th>
+                <th>Tipo Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7">No se encontraron usuarios con ese criterio.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.Nombre</td>
+                        <td>@u.PrimerApellido</td>
+                        <td>@u.SegundoApellido</td>
+                        <td>@u.Correo</td>
+                        <td>@u.Estado</td>
+                        <td>@u.TipoUsuario</td>
+                        <td>
+                            <form asp-action="Inactivar" method="post">
+                                <input type="hidden" name="id" value="@u.ID" />
+                                <button type="submit" onclick="return confirm('¿Está seguro de inactivar el usuario?')">Inactivar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+</div>

@@ -1,0 +1,27 @@
+﻿@model ProyectoFinalProgra4.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@{
+    Layout = "_LayoutLogin";
+}
+<form asp-action="Login" method="post">
+    <div>
+        <label>Usuario</label>
+        <input asp-for="Usuario" />
+        <span asp-validation-for="Usuario" style="color:red"></span>
+    </div>
+
+    <div>
+        <label>Contraseña</label>
+        <input asp-for="Contraseña" type="password" />
+        <span asp-validation-for="Contraseña" style="color:red"></span>
+    </div>
+
+    <button type="submit">Iniciar Sesión</button>
+
+    <div style="color:red">
+        @Html.ValidationSummary()
+    </div>
+</form>
